@@ -1,0 +1,40 @@
+{
+  "sucursales": [
+    {
+      "nombre": "Totonacas",
+      "direccion": "Totonacas Mz61 Lt17 Local 1, Ajusco, Coyoacán, CP 04300",
+      "horario": "Lun–Sáb: 9:30 am – 9:00 pm",
+      "whatsapp": "5560743024",
+      "telefono": "5515175244",
+      "maps": "https://www.google.com/maps/search/Totonacas+Mz61+Lt17+Coyoacán+CDMX",
+      "resenas": "⭐ 4.3 · 75 reseñas Google"
+    },
+    {
+      "nombre": "Ahuejote",
+      "direccion": "Ahuejote 488, Pedregal de Santo Domingo, Coyoacán, CP 04369",
+      "horario": "Lun–Sáb: 11:00 am – 9:00 pm",
+      "whatsapp": "5560743024",
+      "telefono": "5515175244",
+      "maps": "https://www.google.com/maps/search/Ahuejote+488+Coyoacán+CDMX",
+      "resenas": "⭐ 3.8 · 8 reseñas Google"
+    },
+    {
+      "nombre": "Ahuanusco",
+      "direccion": "Ahuanusco 123, Pedregal de Santo Domingo, Coyoacán, CP 04369",
+      "horario": "Abierto hasta las 10:00 pm",
+      "whatsapp": "5560743024",
+      "telefono": "5515175244",
+      "maps": "https://www.google.com/maps/search/Ahuanusco+123+Coyoacán+CDMX",
+      "resenas": "⭐ 3.7 · 28 reseñas Google"
+    },
+    {
+      "nombre": "San Celo",
+      "direccion": "San Celo, CDMX",
+      "horario": "",
+      "whatsapp": "5634931351",
+      "telefono": "",
+      "maps": "",
+      "resenas": ""
+    }
+  ]
+}

@@ -6,21 +6,73 @@ media_folder: fotos
 public_folder: /fotos
 
 collections:
-  - name: sucursales
-    label: "Sucursales"
-    folder: datos/sucursales
-    create: true
-    slug: "{{nombre}}"
-    fields:
-      - {label: "Nombre", name: nombre, widget: string}
-      - {label: "Teléfono WhatsApp", name: whatsapp, widget: string}
-      - {label: "Dirección", name: direccion, widget: string}
+  - name: ajustes
+    label: "⚙️ Ajustes generales"
+    files:
+
+      - name: hero
+        label: "🖼️ Foto de portada (fondo principal)"
+        file: datos/config.json
+        format: json
+        fields:
+          - label: "Foto de fondo del sitio"
+            name: hero_imagen
+            widget: image
+            hint: "Esta es la foto grande que aparece al entrar al sitio"
+
+      - name: sucursales
+        label: "📍 Sucursales"
+        file: datos/sucursales.json
+        format: json
+        fields:
+          - label: "Lista de sucursales"
+            name: sucursales
+            widget: list
+            summary: "{{fields.nombre}}"
+            fields:
+              - {label: "Nombre de la sucursal", name: nombre, widget: string}
+              - {label: "Dirección completa", name: direccion, widget: string}
+              - {label: "Horario", name: horario, widget: string, required: false, hint: "Ej: Lun–Sáb 9am – 9pm"}
+              - {label: "WhatsApp (solo números, sin +52)", name: whatsapp, widget: string, hint: "Ej: 5560743024"}
+              - {label: "Teléfono fijo (solo números)", name: telefono, widget: string, required: false}
+              - {label: "Link de Google Maps", name: maps, widget: string, required: false, hint: "Pega el link completo de Google Maps"}
+              - {label: "Reseñas Google (texto)", name: resenas, widget: string, required: false, hint: "Ej: ⭐ 4.3 · 75 reseñas Google"}
+
+      - name: menu
+        label: "💰 Menú y precios"
+        file: datos/menu.json
+        format: json
+        fields:
+          - label: "Pestañas del menú"
+            name: tabs
+            widget: list
+            summary: "{{fields.emoji}} {{fields.label}}"
+            fields:
+              - {label: "ID (no cambiar)", name: id, widget: hidden}
+              - {label: "Emoji", name: emoji, widget: string}
+              - {label: "Nombre de la pestaña", name: label, widget: string}
+              - label: "Secciones de esta pestaña"
+                name: secciones
+                widget: list
+                summary: "{{fields.titulo}}"
+                fields:
+                  - {label: "Título de la sección", name: titulo, widget: string}
+                  - {label: "Subtítulo (opcional)", name: subtitulo, widget: string, required: false}
+                  - {label: "Tipo de vista", name: tipo, widget: hidden}
+                  - label: "Productos / Precios"
+                    name: items
+                    widget: list
+                    summary: "{{fields.nombre}} — ${{fields.precio}}"
+                    fields:
+                      - {label: "Nombre del producto", name: nombre, widget: string}
+                      - {label: "Precio ($)", name: precio, widget: number, value_type: int}
 
   - name: galeria
-    label: "Galería de fotos"
+    label: "🖼️ Galería de fotos"
     folder: datos/galeria
     create: true
     slug: "{{titulo}}"
     fields:
-      - {label: "Título", name: titulo, widget: string}
+      - {label: "Título / descripción", name: titulo, widget: string}
+      - {label: "Categoría", name: categoria, widget: select, options: ["tematicos", "bodas", "bautizos", "cumpleanos", "personalizados"]}
       - {label: "Foto", name: foto, widget: image}

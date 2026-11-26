@@ -1,0 +1,156 @@
+{
+  "tabs": [
+    {
+      "id": "t-pasteles",
+      "emoji": "🎂",
+      "label": "Pasteles",
+      "secciones": [
+        {
+          "titulo": "Pastel Vitrina",
+          "subtitulo": "Precio por pastel entero — elige tu sabor",
+          "tipo": "chips",
+          "items": [
+            {"nombre": "Zarzamora", "precio": 320},
+            {"nombre": "Cajeta", "precio": 320},
+            {"nombre": "Mango", "precio": 320},
+            {"nombre": "Durazno", "precio": 345},
+            {"nombre": "Oreo", "precio": 345},
+            {"nombre": "Fresa natural", "precio": 345},
+            {"nombre": "Moka", "precio": 345},
+            {"nombre": "Choco 3 Leches", "precio": 365},
+            {"nombre": "Nuez", "precio": 365},
+            {"nombre": "Choco Especial", "precio": 425},
+            {"nombre": "Queso con Zarzamora", "precio": 425},
+            {"nombre": "Flan con Durazno", "precio": 425},
+            {"nombre": "Durazno con Nuez", "precio": 425}
+          ]
+        },
+        {
+          "titulo": "Pasteles Enteros",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Pastel Imposible", "precio": 320},
+            {"nombre": "Flan Napolitano", "precio": 290},
+            {"nombre": "Pay de Queso con Zarzamora", "precio": 345},
+            {"nombre": "Pay de Queso con Fresa", "precio": 345},
+            {"nombre": "Pay Tortuga", "precio": 425}
+          ]
+        },
+        {
+          "titulo": "Gelatinas",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Gelatina con Fruta", "precio": 200},
+            {"nombre": "Gelatina Mosaico", "precio": 175}
+          ]
+        },
+        {
+          "titulo": "Rebanada de Pastel",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "3 Leches, Pay queso con zarzamora, Flan, Imposible, Pay de queso con fresa", "precio": 40},
+            {"nombre": "Chocolate 3 Leches, Chocolate Especial y Tortuga", "precio": 45}
+          ]
+        },
+        {
+          "titulo": "Vasos",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Gelatina y Flan Vainilla", "precio": 20},
+            {"nombre": "Pay de Limón", "precio": 35}
+          ]
+        },
+        {
+          "titulo": "Mini Pastel",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Fresa, Moka, Galleta, Durazno y Zarzamora", "precio": 95},
+            {"nombre": "Chocolate 3 Leches, Chocolate Especial", "precio": 110}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-mini",
+      "emoji": "🍰",
+      "label": "Por Kilo",
+      "secciones": [
+        {
+          "titulo": "Por Kilo",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Mermelada de Fresa o Zarzamora", "precio": 135},
+            {"nombre": "Durazno o Chispas de Chocolate", "precio": 145},
+            {"nombre": "Galleta o Mango o Cajeta", "precio": 155},
+            {"nombre": "Nuez o Fresa Natural", "precio": 160},
+            {"nombre": "Durazno con Nuez", "precio": 175},
+            {"nombre": "Flan", "precio": 180},
+            {"nombre": "Flan con Nuez", "precio": 200},
+            {"nombre": "Chocolate 3 Leches", "precio": 165},
+            {"nombre": "Queso con Zarzamora", "precio": 185},
+            {"nombre": "Cremoso Chocolate o Vainilla", "precio": 160},
+            {"nombre": "Chocolate Especial (cremoso)", "precio": 195}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-figuras",
+      "emoji": "🏅",
+      "label": "Obleas",
+      "secciones": [
+        {
+          "titulo": "Obleas",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Oblea con pastel", "precio": 65},
+            {"nombre": "Oblea sola", "precio": 100}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-velas",
+      "emoji": "🕯️",
+      "label": "Velas & Extras",
+      "secciones": [
+        {
+          "titulo": "Velas & Extras",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "Vela Número", "precio": 25},
+            {"nombre": "Velas Mágicas", "precio": 25},
+            {"nombre": "Vela Pirotecnia Chica", "precio": 25},
+            {"nombre": "Vela Pirotecnia Grande", "precio": 40},
+            {"nombre": "Vela Letrero", "precio": 40}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "t-galletas",
+      "emoji": "🍪",
+      "label": "Galletas",
+      "secciones": [
+        {
+          "titulo": "Galletas artesanales",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "10 piezas", "precio": 25},
+            {"nombre": "20 piezas", "precio": 62},
+            {"nombre": "1 kilo", "precio": 250}
+          ]
+        },
+        {
+          "titulo": "Por gramo / kilo",
+          "tipo": "lista",
+          "items": [
+            {"nombre": "100 gramos", "precio": 25},
+            {"nombre": "250 gramos", "precio": 62},
+            {"nombre": "Kilo", "precio": 250}
+          ]
+        }
+      ]
+    }
+  ]
+}

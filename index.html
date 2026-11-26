@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- v5 -->
+<!-- v6 -->
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -260,7 +260,7 @@
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
   <div class="absolute inset-0">
-    <img src="fotos/hero_multi.png" alt="Pastelería La Princesa pasteles artesanales Coyoacán"
+    <img id="hero-img" src="fotos/hero_multi.png" alt="Pastelería La Princesa pasteles artesanales Coyoacán"
          class="w-full h-full object-cover object-top" />
     <div class="hero-overlay absolute inset-0"></div>
   </div>
@@ -417,6 +417,7 @@
       <button class="menu-tab"        onclick="switchTab(this,'t-galletas')">🍪 Galletas</button>
     </div>
 
+    <div id="menu-panels">
     <!-- Pasteles enteros -->
     <div id="t-pasteles" class="menu-panel active reveal">
       <div class="bg-crema rounded-2xl p-6 md:p-8 border border-rosa/40">
@@ -538,6 +539,7 @@
       </div>
     </div>
 
+    </div><!-- end menu-panels -->
     <p class="font-body text-gray-400 text-xs text-center mt-6">* Precios orientativos, sujetos a cambio. Consulta tu pedido personalizado por WhatsApp.</p>
     <div class="text-center mt-6 reveal">
       <a href="https://wa.me/5560743024?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20los%20precios%20de%20pasteles%20personalizados%20%F0%9F%8E%82"
@@ -888,7 +890,7 @@
       <p class="font-body text-sm mt-2 font-semibold" style="color:#E91E8F;">📞 Las tres sucursales son de la misma familia — un solo número para pedidos e informes: <a href="tel:5515175244" class="underline">55 1517 5244</a></p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6">
+    <div id="sucursales-grid" class="grid md:grid-cols-3 gap-6">
       <!-- Sucursal 1 -->
       <div class="suc-card reveal bg-white p-6 shadow-sm">
         <div class="w-12 h-12 bg-fucsia rounded-xl flex items-center justify-center text-white font-extrabold text-xl mb-4 font-display">1</div>
@@ -1243,6 +1245,97 @@ const ro = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+</script>
+
+<script>
+// ═══ CARGA DE DATOS DESDE JSON (editable vía CMS) ═══
+async function loadDatos() {
+  const v = Date.now();
+  try {
+    const cfg = await fetch('/datos/config.json?v=' + v).then(r => r.json());
+    if (cfg.hero_imagen) document.getElementById('hero-img').src = cfg.hero_imagen;
+  } catch(e) {}
+
+  try {
+    const {sucursales} = await fetch('/datos/sucursales.json?v=' + v).then(r => r.json());
+    if (sucursales && sucursales.length) renderSucursales(sucursales);
+  } catch(e) {}
+
+  try {
+    const {tabs} = await fetch('/datos/menu.json?v=' + v).then(r => r.json());
+    if (tabs && tabs.length) renderMenu(tabs);
+  } catch(e) {}
+}
+
+function fmtTel(t) {
+  return t ? t.replace(/(\d{2})(\d{4})(\d{4})/, '$1 $2 $3') : '';
+}
+
+function renderSucursales(list) {
+  const grid = document.getElementById('sucursales-grid');
+  if (!grid) return;
+  grid.innerHTML = list.map((s, i) => `
+    <div class="suc-card reveal bg-white p-6 shadow-sm">
+      <div class="w-12 h-12 bg-fucsia rounded-xl flex items-center justify-center text-white font-extrabold text-xl mb-4 font-display">${i+1}</div>
+      <h3 class="font-display font-bold text-negro text-lg mb-0.5">Sucursal ${s.nombre}</h3>
+      <p class="font-body text-fucsia text-xs font-bold mb-4">${s.resenas || '📍 Sucursal'}</p>
+      <div class="space-y-2.5 font-body text-sm text-gray-600 mb-5">
+        ${s.direccion ? `<p>📍 ${s.direccion}</p>` : ''}
+        ${s.horario   ? `<p>⏰ ${s.horario}</p>` : ''}
+        ${s.whatsapp  ? `<p>💬 <span class="font-semibold text-gray-700">WhatsApp:</span> <a href="https://wa.me/52${s.whatsapp}?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20la%20sucursal%20${encodeURIComponent(s.nombre)}%20%F0%9F%8E%82" target="_blank" class="text-green-600 hover:underline font-semibold">${fmtTel(s.whatsapp)}</a></p>` : ''}
+        ${s.telefono  ? `<p>📞 <span class="font-semibold text-gray-700">Solo llamadas:</span> <a href="tel:${s.telefono}" class="text-fucsia hover:underline font-semibold">${fmtTel(s.telefono)}</a></p>` : ''}
+      </div>
+      <div class="flex gap-2">
+        ${s.whatsapp ? `<a href="https://wa.me/52${s.whatsapp}?text=Hola!%20Quiero%20hacer%20un%20pedido%20en%20la%20sucursal%20${encodeURIComponent(s.nombre)}%20%F0%9F%8E%82" target="_blank" class="flex-1 bg-green-500 text-white text-xs font-bold text-center py-2.5 rounded-full hover:bg-green-600 transition-colors">💬 WhatsApp</a>` : ''}
+        ${s.maps     ? `<a href="${s.maps}" target="_blank" class="flex-1 border-2 border-fucsia text-fucsia text-xs font-bold text-center py-2.5 rounded-full hover:bg-rosa transition-colors">Cómo llegar</a>` : ''}
+      </div>
+    </div>
+  `).join('');
+  grid.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}
+
+function renderSeccion(sec) {
+  if (sec.tipo === 'chips') {
+    return `
+      <h3 class="font-display font-bold text-fucsia text-xl mb-2">${sec.titulo}</h3>
+      ${sec.subtitulo ? `<p class="font-body text-xs text-gray-400 mb-4">${sec.subtitulo}</p>` : ''}
+      <div class="flex flex-wrap gap-2 mb-6">
+        ${sec.items.map(it => `
+          <span class="inline-flex items-center gap-1.5 bg-white border border-rosa/50 rounded-full px-3 py-1.5 text-sm font-body">
+            <span class="text-gray-700">${it.nombre}</span><span class="font-bold text-fucsia">$${it.precio}</span>
+          </span>`).join('')}
+      </div>`;
+  }
+  return `
+    <h3 class="font-display font-bold text-fucsia text-xl mb-4">${sec.titulo}</h3>
+    <div class="divide-y divide-rosa/30 font-body text-sm mb-6">
+      ${sec.items.map(it => `
+        <div class="flex justify-between items-center py-3">
+          <span class="text-gray-700">${it.nombre}</span>
+          <span class="font-bold text-fucsia text-base">$${it.precio}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderMenu(tabs) {
+  const tabsEl = document.getElementById('menuTabs');
+  if (tabsEl) {
+    tabsEl.innerHTML = tabs.map((tab, i) =>
+      `<button class="menu-tab${i===0?' active':''}" onclick="switchTab(this,'${tab.id}')">${tab.emoji} ${tab.label}</button>`
+    ).join('');
+  }
+  const panelsEl = document.getElementById('menu-panels');
+  if (!panelsEl) return;
+  panelsEl.innerHTML = tabs.map((tab, i) => `
+    <div id="${tab.id}" class="menu-panel${i===0?' active':''} reveal">
+      <div class="bg-crema rounded-2xl p-6 md:p-8 border border-rosa/40">
+        ${tab.secciones.map(renderSeccion).join('')}
+      </div>
+    </div>`).join('');
+  panelsEl.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+}
+
+loadDatos();
 </script>
 </body>
 </html>
