@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: fotos
+public_folder: /fotos
+
+collections:
+  - name: sucursales
+    label: "Sucursales"
+    folder: datos/sucursales
+    create: true
+    slug: "{{nombre}}"
+    fields:
+      - {label: "Nombre", name: nombre, widget: string}
+      - {label: "Teléfono WhatsApp", name: whatsapp, widget: string}
+      - {label: "Dirección", name: direccion, widget: string}
+
+  - name: galeria
+    label: "Galería de fotos"
+    folder: datos/galeria
+    create: true
+    slug: "{{titulo}}"
+    fields:
+      - {label: "Título", name: titulo, widget: string}
+      - {label: "Foto", name: foto, widget: image}
